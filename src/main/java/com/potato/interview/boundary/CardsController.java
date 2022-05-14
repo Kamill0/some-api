@@ -1,5 +1,6 @@
 package com.potato.interview.boundary;
 
+import com.potato.interview.boundary.dto.CardCreateDto;
 import com.potato.interview.boundary.dto.CardDto;
 import com.potato.interview.boundary.exception.TooManyParamsException;
 import com.potato.interview.control.service.CardService;
@@ -60,8 +61,8 @@ public class CardsController {
     }
 
     @PostMapping("/cards")
-    public void createCard(@Valid @RequestBody CardDto cardDto) {
-        cardService.save(cardDto);
+    public void createCard(@Valid @RequestBody CardCreateDto cardCreateDto) {
+        cardService.save(cardCreateDto);
     }
 
 }

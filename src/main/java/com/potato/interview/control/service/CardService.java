@@ -1,5 +1,6 @@
 package com.potato.interview.control.service;
 
+import com.potato.interview.boundary.dto.CardCreateDto;
 import com.potato.interview.boundary.dto.CardDto;
 import com.potato.interview.boundary.exception.CardNotFoundException;
 import com.potato.interview.boundary.exception.UserNotFoundException;
@@ -9,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,11 +45,11 @@ public class CardService {
                 .collect(Collectors.toList());
     }
 
-    public void save(CardDto cardDto) {
-        String email = cardDto.getUserDto().getEmail();
+    public void save(@Valid CardCreateDto cardCreateDto) {
+        String email = cardCreateDto.getUserEmail();
         try {
             User user = userService.getUserByEmail(email);
-            cardRepository.save(EntityMapper.mapToCard(cardDto, user));
+            cardRepository.save(EntityMapper.mapToCard(cardCreateDto, user));
         } catch (UserNotFoundException exception) {
             log.error("User of given email: {} was not found, card was not created", email);
             throw exception;

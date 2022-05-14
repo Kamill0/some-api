@@ -12,11 +12,8 @@ import java.time.LocalDate;
 @With
 @AllArgsConstructor
 @NoArgsConstructor
-@Schema(description = "Represents a single card")
-public class CardDto {
-
-    @Schema(description = "Card ID")
-    private Long id;
+@Schema(description = "Represents object used to create new card")
+public class CardCreateDto {
 
     @Schema(description = "Card number")
     private String number;
@@ -30,6 +27,6 @@ public class CardDto {
     @Schema(description = "Whether the card can be used to make contactless payments")
     private Boolean isContactless;
 
-    @Schema(description = "Card user details")
-    private UserDto userDto;
+    @Schema(description = "Card user email")
+    private String userEmail;
 }
