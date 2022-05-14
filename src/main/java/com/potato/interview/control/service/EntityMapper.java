@@ -16,6 +16,16 @@ public class EntityMapper {
                 .withIsContactless(card.getIsContactless())
                 .withUserDto(mapToUserDto(card.getUser()));
     }
+
+    public static Card mapToCard(CardDto cardDto, User user) {
+        Card card = new Card();
+        card.setCvv(cardDto.getCvv());
+        card.setNumber(cardDto.getNumber());
+        card.setExpirationDate(cardDto.getExpirationDate());
+        card.setIsContactless(cardDto.getIsContactless());
+        card.setUser(user);
+        return card;
+    }
     public static UserDto mapToUserDto(User user) {
         return new UserDto()
                 .withFirstName(user.getFirstName())

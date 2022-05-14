@@ -8,11 +8,9 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -51,4 +49,19 @@ public class CardsController {
             return cardService.getAllCards();
         }
     }
+
+    @GetMapping(path = "/cards/{id}", produces = APPLICATION_JSON_VALUE)
+    @Operation(description = "Retrieves card by id")
+    public CardDto getCardById(
+            @Parameter(in = ParameterIn.PATH, name = "id", description = "ID of a card")
+            @PathVariable(value = "id") Long cardId)
+    {
+        return cardService.getCardById(cardId);
+    }
+
+    @PostMapping("/cards")
+    public void createCard(@Valid @RequestBody CardDto cardDto) {
+        cardService.save(cardDto);
+    }
+
 }

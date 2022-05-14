@@ -2,6 +2,10 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+    database: h2
   h2:
     console.enabled: true
     console.path: /h2-console
@@ -11,6 +15,7 @@ spring:
     url: jdbc:h2:mem:testdb
     username: demo
     password:
+
 
 management:
   endpoints:

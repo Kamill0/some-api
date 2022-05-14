@@ -18,7 +18,7 @@ public class Card {
 
     @Id
     @Column(name = "C_ID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "C_NUMBER", length = 16)

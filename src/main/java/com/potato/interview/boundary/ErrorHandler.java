@@ -1,6 +1,7 @@
 package com.potato.interview.boundary;
 
 import com.potato.interview.boundary.dto.ErrorDto;
+import com.potato.interview.boundary.exception.CardNotFoundException;
 import com.potato.interview.boundary.exception.TooManyParamsException;
 import com.potato.interview.boundary.exception.UserNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ControllerAdvice
 public class ErrorHandler {
 
-    @ExceptionHandler(value = {TooManyParamsException.class, UserNotFoundException.class})
+    @ExceptionHandler(value = {TooManyParamsException.class, UserNotFoundException.class, CardNotFoundException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
     public ErrorDto handleCustomException(RuntimeException exception) {
