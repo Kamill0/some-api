@@ -54,4 +54,8 @@ class GetCardsIT {
                 .isEqualTo(expectedUser);
     }
 
+    /**
+     * And so on with the remaining variants of the GET /v1/cards method
+     */
+
 }
