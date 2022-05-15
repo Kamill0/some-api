@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.With;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Data
@@ -16,17 +18,23 @@ import java.time.LocalDate;
 public class CardCreateDto {
 
     @Schema(description = "Card number")
+    @NotNull
     private String number;
 
     @Schema(description = "Card expiration date")
+    @NotNull
     private LocalDate expirationDate;
 
     @Schema(description = "Card cvv code")
+    @NotNull
     private Integer cvv;
 
     @Schema(description = "Whether the card can be used to make contactless payments")
+    @NotNull
     private Boolean isContactless;
 
     @Schema(description = "Card user email")
+    @NotNull
+    @Email
     private String userEmail;
 }

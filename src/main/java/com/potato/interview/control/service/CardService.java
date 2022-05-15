@@ -29,7 +29,8 @@ public class CardService {
     }
 
     public CardDto getCardById(Long cardId) {
-        return cardRepository.findById(cardId).map(EntityMapper::mapToCardDto)
+        return cardRepository.findById(cardId)
+                .map(EntityMapper::mapToCardDto)
                 .orElseThrow(() -> new CardNotFoundException("id = " + cardId));
     }
     public List<CardDto> getCardsByUserId(Long uId) {

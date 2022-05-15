@@ -7,8 +7,6 @@ import com.potato.interview.entity.Card;
 import com.potato.interview.entity.User;
 import lombok.experimental.UtilityClass;
 
-import javax.validation.Valid;
-
 @UtilityClass
 public class EntityMapper {
     public static CardDto mapToCardDto(Card card) {
@@ -21,7 +19,7 @@ public class EntityMapper {
                 .withUserDto(mapToUserDto(card.getUser()));
     }
 
-    public static Card mapToCard(@Valid CardCreateDto cardCreateDto, User user) {
+    public static Card mapToCard(CardCreateDto cardCreateDto, User user) {
         Card card = new Card();
         card.setCvv(cardCreateDto.getCvv());
         card.setNumber(cardCreateDto.getNumber());

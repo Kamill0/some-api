@@ -5,6 +5,7 @@ import com.potato.interview.boundary.exception.CardNotFoundException;
 import com.potato.interview.boundary.exception.TooManyParamsException;
 import com.potato.interview.boundary.exception.UserNotFoundException;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,5 +26,11 @@ public class ErrorHandler {
     @ResponseBody
     public ErrorDto handleRuntimeException(RuntimeException exception) {
         return new ErrorDto(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(), exception.getMessage());
+    }
+    @ExceptionHandler(value = MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public ErrorDto handleValidationException(MethodArgumentNotValidException exception) {
+        return new ErrorDto(HttpStatus.BAD_REQUEST.getReasonPhrase(), exception.getMessage());
     }
 }

@@ -21,7 +21,6 @@ public class UserService {
     public User getUserByEmail(String email) {
         return userRepository.findFirstByEmail(email).orElseThrow(userNotFound("email = " + email));
     }
-
     private Supplier<RuntimeException> userNotFound(String message) {
         return () -> new UserNotFoundException(message);
     }
